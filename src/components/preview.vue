@@ -67,14 +67,19 @@ export default {
   },
 
   data: () => ({
-    domUtils: domUtils
+    domUtils: domUtils,
+    mounted: false,
   }),
+
+  mounted() {
+    this.mounted = true
+  },
 
   computed: {
     ...mapState('highlight', ['selectedHighlight']),
   
     content() {
-      if (this.selectedHighlight) {
+      if (this.selectedHighlight && this.mounted) {
         const range = rangy.deserializeRange(
           this.selectedHighlight.range,
           document.getElementById('content')
