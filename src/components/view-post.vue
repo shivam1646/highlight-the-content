@@ -89,12 +89,10 @@ export default {
       );
       const highlightedTexts = this.domUtils.createHighlight(range);
       if (highlightedTexts && highlightedTexts.length) {
-        highlightedTexts.forEach(t => {
-          this.updateHighlights({
-            id: this.$route.params.id,
-            text: t,
-            range: serializedRange
-          });
+        this.updateHighlights({
+          id: this.$route.params.id,
+          text: highlightedTexts.join(""),
+          range: serializedRange
         });
       }
       this.domUtils.removeHighlightMenu();
